@@ -138,16 +138,18 @@ Once you have the new array created, sort the universities alphabetically and lo
 //   return unis.push(graduates.university);
 // });
 
-const unis = graduates.map(function({ university }) {
+const unis = graduates.map(({ university }) => {
   return university;
 });
 
-const universities = unis.sort(function(uniOne, uniTwo) {
+const universities = unis.sort((uniOne, uniTwo) => {
   if (uniOne < uniTwo) {
     return -1;
   }
   return 1;
 });
+
+// const universities = unis.sort();
 
 console.log("need just uni names", universities);
 
@@ -292,7 +294,7 @@ The zoo wants to display both the scientific name and the animal name in front o
 */
 const animalNames = [];
 
-zooAnimals.forEach(function(names) {
+zooAnimals.forEach(names => {
   animalNames.push(
     `Name: ${names.animal_name}, Scientific: ${names.scientific_name} `
   );
@@ -307,9 +309,10 @@ Create a new array named lowerCase and map over each name to convert them all to
 
 */
 
-const lowerCase = zooAnimals.map(function(lowerNames) {
-  return lowerNames.animal_name.toLowerCase();
-});
+const lowerCase = zooAnimals.map(lowerNames =>
+  lowerNames.animal_name.toLowerCase()
+);
+
 console.log("lowerCase", lowerCase);
 
 /* Request 3: .filter() 
@@ -317,9 +320,8 @@ console.log("lowerCase", lowerCase);
 The zoos are concenred about animals with a lower population count. Find out which animals have a population less than 5.
 
 */
-const largerPopulation = zooAnimals.filter(function(lowPop) {
-  return lowPop.population < 5;
-});
+const largerPopulation = zooAnimals.filter(lowPop => lowPop.population < 5);
+
 console.log("lowpop", largerPopulation);
 
 /* Request 4: .reduce() 
@@ -328,7 +330,7 @@ The zoos need to know their total animal population across the United States.
 Find the total population from all the zoos using the .reduce() method.
 
 */
-const populationTotal = zooAnimals.reduce(function(acc, pop) {
+const populationTotal = zooAnimals.reduce((acc, pop) => {
   return acc + pop.population;
 }, 0);
 console.log("total pop", populationTotal);
