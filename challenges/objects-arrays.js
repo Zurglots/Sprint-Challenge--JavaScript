@@ -134,8 +134,16 @@ Once you have the new array created, sort the universities alphabetically and lo
 
 // unis.push(graduates.university);
 
-const universities = graduates.sort(function(uniOne, uniTwo) {
-  if (uniOne.university < uniTwo.university) {
+// graduates.map(function() {
+//   return unis.push(graduates.university);
+// });
+
+const unis = graduates.map(function({ university }) {
+  return university;
+});
+
+const universities = unis.sort(function(uniOne, uniTwo) {
+  if (uniOne < uniTwo) {
     return -1;
   }
   return 1;
