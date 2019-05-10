@@ -129,8 +129,30 @@ const graduates = [
 /* Request 1: Create a new array called universities that contains all the univeristies in the graduates array.  
 
 Once you have the new array created, sort the universities alphabetically and log the result. */
-const universities = [];
-console.log(universities);
+
+// unis = [];
+
+// unis.push(graduates.university);
+
+const universities = graduates.sort(function(uniOne, uniTwo) {
+  if (uniOne.university < uniTwo.university) {
+    return -1;
+  }
+  return 1;
+});
+
+console.log("need just uni names", universities);
+
+// const sortedArray = sort(graduates, (uniOne, uniTwo) => {
+//   return uniOne.university - uniTwo.university;
+// });
+
+// let carModels = inventory.sort(function(carA, carB) {
+//   if (carA.car_model < carB.car_model) {
+//     return -1;
+//   }
+//   return 1;
+// });
 
 /* Request 2: Create a new array called contactInfo that contains both first name and email of each student. 
 
@@ -138,16 +160,51 @@ The resulting contact information should have a space between the first name and
 Name email@example.com
 
 Log the result of your new array. */
-const contactInfo = [];
-console.log(contactInfo);
 
-/* Request 3: Find out how many universities have the string "Uni" included in their name. Create a new array called uni that contains them all. Log the result. */
+fullName = [];
+
+graduates.forEach(function({ first_name, email }) {
+  fullName.push(`${first_name} ${email}`);
+});
+
+console.log("name and emails", fullName);
+
+// runners.forEach(function({ first_name, last_name }) {
+//   fullName.push(`${first_name} ${last_name}`);
+// });
+
+// console.log("fullName", fullName);
+
+/* Request 3: Find out how many universities have the string "Uni" included in their name. 
+// Create a new array called uni that contains them all. Log the result. */
 const uni = [];
-console.log(uni);
+
+for (i = 0; i < graduates.length; i++) {
+  if (graduates[i].university.indexOf("Uni") > -1) {
+    uni.push(graduates[i].university);
+  }
+}
+
+console.log("includes uni", uni);
+
+// const hasUni = function() {
+//   if (graduates.indexOf("Uni") > -1) {
+//     return uni.push();
+//   }
+// };
+
+// function hasUni(Uni) {
+//   return str.includes("Uni") ? uni.push(graduates.university) : none;
+// }
+
+// hasUni({ university });
+
+// console.log(uni);
 
 // ==== ADVANCED Array Methods ====
 
-// Given this zoo data from around the United States, follow the instructions below.  Use the specific array methods in the requests below to solve the problems.
+// Given this zoo data from around the United States, follow the instructions below.
+// Use the specific array methods in the requests below to solve the problems.
 
 zooAnimals = [
   {
@@ -214,36 +271,53 @@ zooAnimals = [
 
 /* Request 1: .forEach()
 
-The zoo wants to display both the scientific name and the animal name in front of the habitats.  Return an array with only the animal and scientific names in it.  The individual values in the array should look like this "Name: Jackal, asiatic, Scientific: Canis aureus."
+The zoo wants to display both the scientific name and the animal name in front of the habitats. 
+ Return an array with only the animal and scientific names in it.  
+ The individual values in the array should look like this "Name: Jackal, asiatic, Scientific: Canis aureus."
 
 */
 const animalNames = [];
-console.log(animalNames);
+
+zooAnimals.forEach(function(names) {
+  animalNames.push(
+    `Name: ${names.animal_name}, Scientific: ${names.scientific_name} `
+  );
+});
+
+console.log("animalNames", animalNames);
 
 /* Request 2: .map()    
 
-The zoos need a list of all their animal's names (names only, not scientific) converted to lower case.  Create a new array named lowerCase and map over each name to convert them all to lower case.  Log the resut.
+The zoos need a list of all their animal's names (names only, not scientific) converted to lower case.  
+Create a new array named lowerCase and map over each name to convert them all to lower case.  Log the resut.
 
 */
 
-const lowerCase = [];
-console.log(lowerCase);
+const lowerCase = zooAnimals.map(function(lowerNames) {
+  return lowerNames.animal_name.toLowerCase();
+});
+console.log("lowerCase", lowerCase);
 
 /* Request 3: .filter() 
 
 The zoos are concenred about animals with a lower population count. Find out which animals have a population less than 5.
 
 */
-const largerPopulation = [];
-console.log(largerPopulation);
+const largerPopulation = zooAnimals.filter(function(lowPop) {
+  return lowPop.population < 5;
+});
+console.log("lowpop", largerPopulation);
 
 /* Request 4: .reduce() 
 
-The zoos need to know their total animal population across the United States.  Find the total population from all the zoos using the .reduce() method.
+The zoos need to know their total animal population across the United States.  
+Find the total population from all the zoos using the .reduce() method.
 
 */
-const populationTotal = 0;
-console.log(populationTotal);
+const populationTotal = zooAnimals.reduce(function(acc, pop) {
+  return acc + pop.population;
+}, 0);
+console.log("total pop", populationTotal);
 
 /* 
 
