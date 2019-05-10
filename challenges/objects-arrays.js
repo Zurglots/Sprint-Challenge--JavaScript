@@ -185,15 +185,21 @@ console.log("name and emails", fullName);
 
 /* Request 3: Find out how many universities have the string "Uni" included in their name. 
 // Create a new array called uni that contains them all. Log the result. */
-const uni = [];
+// const uni = [];
 
-for (i = 0; i < graduates.length; i++) {
-  if (graduates[i].university.indexOf("Uni") > -1) {
-    uni.push(graduates[i].university);
+// for (i = 0; i < graduates.length; i++) {
+//   if (graduates[i].university.indexOf("Uni") > -1) {
+//     uni.push(graduates[i].university);
+//   }
+// }
+
+const uniMap = graduates.map(function({ university }) {
+  if (university.includes("Uni")) {
+    return university;
   }
-}
+});
 
-console.log("includes uni", uni);
+console.log("includes uni", uniMap);
 
 // const hasUni = function() {
 //   if (graduates.indexOf("Uni") > -1) {
